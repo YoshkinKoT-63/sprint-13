@@ -7,8 +7,8 @@ module.exports.getUsers = (req, res) => {
 };
 
 module.exports.getUser = (req, res) => {
-  const { userId } = req.params.id;
-  User.findById({ userId })
+  const userId = req.params.id;
+  User.findById(userId)
     .then((user) => {
       if (!user) {
         res.status(400).send({ message: 'Нет пользователя с таким id' });
@@ -20,8 +20,6 @@ module.exports.getUser = (req, res) => {
 };
 
 module.exports.createUser = (req, res) => {
-  console.log('запрос получен');
-  console.log(req.body);
   const { name, about, avatar } = req.body;
 
   User.create({ name, about, avatar })
