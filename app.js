@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cards = require('./routes/cards');
 const users = require('./routes/users');
@@ -23,8 +22,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 app.use('/cards', cards);
