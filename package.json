@@ -1,7 +1,7 @@
 {
   "name": "lyulin_sprint-13",
   "version": "0.0.4",
-  "description": "",
+  "description": "Yandex praktikum project work",
   "main": "index.js",
   "scripts": {
     "start": "node ./app.js",
