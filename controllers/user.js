@@ -11,7 +11,7 @@ module.exports.getUser = (req, res) => {
   User.findById(userId)
     .then((user) => {
       if (!user) {
-        res.status(400).send({ message: 'Нет пользователя с таким id' });
+        res.status(404).send({ message: 'Нет пользователя с таким id' });
       } else {
         res.send({ data: user });
       }
@@ -24,5 +24,11 @@ module.exports.createUser = (req, res) => {
 
   User.create({ name, about, avatar })
     .then((user) => res.send({ data: user }))
-    .catch((err) => res.status(500).send({ message: err.message }));
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        res.status(400).send({ message: err.message });
+      } else {
+        res.status(500).send({ message: err.message });
+      }
+    });
 };
